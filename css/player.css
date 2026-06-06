@@ -1,0 +1,500 @@
+/* ============================================================
+   CRWN — MUSIC PLAYER STYLES
+   player.css — included in index.html
+   ============================================================ */
+
+:root {
+  --gold: #C9962A;
+  --gold-light: #E8B84B;
+  --gold-dim: rgba(201, 150, 42, 0.15);
+  --purple: #3B0A5C;
+  --black: #0A0A0A;
+  --black-2: #111111;
+  --black-3: #181818;
+  --white: #F5F2EC;
+  --gray: rgba(245, 242, 236, 0.45);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ── TRIGGER BUTTON ─────────────────────────────────────── */
+.player-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  font-weight: 600;
+  background-image: url('../assets/images/btn-gold.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  padding: 14px 36px;
+  min-width: 210px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s var(--ease);
+  text-decoration: none;
+}
+.player-trigger:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+.player-trigger .pt-icon {
+  width: 18px; height: 18px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px;
+}
+
+/* ── MODAL BACKDROP ─────────────────────────────────────── */
+.player-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+.player-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.player-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── MODAL PANEL ────────────────────────────────────────── */
+.player-panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  background: var(--black-2);
+  border: 1px solid rgba(201, 150, 42, 0.2);
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  max-height: 90vh;
+  overflow: hidden;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.45s var(--ease);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,150,42,0.08);
+}
+.player-modal.open .player-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* ── LEFT — NOW PLAYING ─────────────────────────────────── */
+.player-left {
+  background: var(--black-3);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-right: 1px solid rgba(201, 150, 42, 0.1);
+}
+
+.now-playing-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.now-playing-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse-dot 1.4s ease infinite;
+}
+.now-playing-label.paused::before {
+  animation: none;
+  background: var(--gray);
+}
+
+/* Cover art */
+.cover-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.cover-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease);
+}
+.cover-wrap.spinning img {
+  animation: coverSpin 20s linear infinite;
+}
+.preview-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(201,150,42,0.4);
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+/* Track info */
+.track-info { text-align: center; }
+.track-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+  transition: opacity 0.3s;
+}
+.track-album {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* Progress bar */
+.progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.progress-bar-bg {
+  width: 100%;
+  height: 3px;
+  background: rgba(245,242,236,0.08);
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+  overflow: visible;
+}
+.progress-bar-bg:hover { height: 5px; }
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.1s linear;
+  position: relative;
+}
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: -5px; top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.progress-bar-bg:hover .progress-fill::after { opacity: 1; }
+.progress-times {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+}
+.time-limit { color: var(--gold); }
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.15s var(--ease);
+  padding: 4px;
+}
+.ctrl-btn:hover { color: var(--white); transform: scale(1.1); }
+.ctrl-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.ctrl-btn.play-btn {
+  width: 52px; height: 52px;
+  background: var(--gold);
+  border-radius: 50%;
+  color: var(--black);
+}
+.ctrl-btn.play-btn:hover {
+  background: var(--gold-light);
+  color: var(--black);
+  transform: scale(1.06);
+}
+.ctrl-btn.play-btn svg { width: 22px; height: 22px; }
+
+/* Purchase button */
+.purchase-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  background-image: url('../assets/images/btn-gold.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  color: var(--black);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s var(--ease);
+}
+.purchase-btn:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+.purchase-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ── RIGHT — TRACKLIST ──────────────────────────────────── */
+.player-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tracklist-header {
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid rgba(245,242,236,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tracklist-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+.tracklist-subtitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.close-btn {
+  background: none;
+  border: 1px solid rgba(245,242,236,0.12);
+  color: var(--gray);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s var(--ease);
+  flex-shrink: 0;
+}
+.close-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(90deg);
+}
+
+/* Track list */
+.tracklist {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,150,42,0.2) transparent;
+}
+.tracklist::-webkit-scrollbar { width: 3px; }
+.tracklist::-webkit-scrollbar-track { background: transparent; }
+.tracklist::-webkit-scrollbar-thumb { background: rgba(201,150,42,0.3); border-radius: 2px; }
+
+.track-row {
+  display: grid;
+  grid-template-columns: 38px 44px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-left: 2px solid transparent;
+}
+.track-row:hover {
+  background: rgba(201,150,42,0.05);
+}
+.track-row.active {
+  background: rgba(201,150,42,0.08);
+  border-left-color: var(--gold);
+}
+
+.track-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  text-align: center;
+}
+.track-row.active .track-num { color: var(--gold); }
+.track-row.active .track-num .num-static { display: none; }
+.track-num .bars {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  justify-content: center;
+}
+.track-row.active.playing .track-num .bars { display: flex; }
+.track-row.active.playing .track-num .num-static { display: none; }
+.track-row.active:not(.playing) .track-num .num-static { display: block; }
+.bar {
+  width: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  animation: none;
+}
+.track-row.active.playing .bar { animation: barBounce 0.8s ease infinite alternate; }
+.bar:nth-child(2) { animation-delay: 0.15s; }
+.bar:nth-child(3) { animation-delay: 0.3s; }
+
+.track-thumb {
+  width: 44px; height: 44px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.track-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85);
+  transition: filter 0.2s;
+}
+.track-row:hover .track-thumb img,
+.track-row.active .track-thumb img { filter: brightness(1); }
+
+.track-meta { min-width: 0; }
+.track-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+.track-row.active .track-name { color: var(--gold); }
+.track-album-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  color: var(--gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-duration {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+/* Buy track inline */
+.tracklist-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(245,242,236,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.album-purchase {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background-image: url('../assets/images/btn-gold.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 12px 26px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  min-width: 180px;
+  justify-content: center;
+  transition: filter 0.2s, transform 0.2s var(--ease);
+}
+.album-purchase:hover { filter: brightness(1.1); transform: scale(1.02); }
+.preview-note {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+  font-style: italic;
+  color: var(--gray);
+}
+
+/* ── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+@keyframes coverSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes barBounce {
+  from { height: 4px; }
+  to { height: 14px; }
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .player-panel {
+    grid-template-columns: 1fr;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+  .player-left { padding: 24px 20px; }
+  .cover-wrap { max-width: 220px; margin: 0 auto; }
+  .player-right { max-height: 50vh; }
+}
