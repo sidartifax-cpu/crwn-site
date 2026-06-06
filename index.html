@@ -179,6 +179,9 @@
     .btn-purple .btn-label { color:#F5F2EC; }
     .btn-dark .btn-bg { background-image:url('assets/images/btn-black.png'); }
     .btn-dark .btn-label { color:#F5F2EC; border:1px solid rgba(245,242,236,.25); padding:11px 25px; }
+    /* Black solo button — no border overlay */
+    .btn-black-solo .btn-bg { background-image:url('assets/images/btn-black.png'); }
+    .btn-black-solo .btn-label { color:#F5F2EC; }
 
     /* FIX 2: cards pinned to far right edge */
     .hero-right {
@@ -223,21 +226,22 @@
     .section-img img { width:100%; height:auto; display:block; }
 
     .feature-ctas {
-      position:absolute; bottom:7%; left:0; right:0;
+      position:absolute; bottom:14%; left:0; right:0;
       display:grid; grid-template-columns:1fr 1fr 1fr;
       padding:0 4%; gap:2%;
     }
     .feat-cta {
-      display:flex; align-items:center; gap:8px;
-      font-family:'Oswald',sans-serif; font-size:9px; letter-spacing:.2em;
-      color:rgba(245,242,236,.7); text-decoration:none; text-transform:uppercase;
-      padding:10px 20px;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:.2em;
+      color:#F5F2EC; text-decoration:none; text-transform:uppercase;
+      padding:14px 28px;
       background-image:url('assets/images/btn-black.png');
       background-size:100% 100%; background-repeat:no-repeat; background-color:transparent;
       border:none; white-space:nowrap;
+      min-width:180px;
       transition:filter .3s, gap .3s;
     }
-    .feat-cta:hover { filter:brightness(1.15); gap:14px; }
+    .feat-cta:hover { filter:brightness(1.25); gap:14px; }
 
     .o-hover {
       position:absolute; left:0; top:0; bottom:0; width:17%;
@@ -427,7 +431,7 @@
             <div class="btn-bg"></div>
             <span class="btn-label">Enter The Frequency</span>
           </a>
-          <a href="#connect" class="btn-brush btn-dark">
+          <a href="#connect" class="btn-brush btn-black-solo">
             <div class="btn-bg"></div>
             <span class="btn-label">Book CRWN</span>
           </a>
