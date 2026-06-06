@@ -585,7 +585,16 @@
     const cur=document.getElementById('cur'),curR=document.getElementById('curR');
     let mx=0,my=0,rx=0,ry=0;
     document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-    (function t(){cur.style.cssText=`left:${mx}px;top:${my}px;`;rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.cssText=`left:${rx}px;top:${ry}px;`;requestAnimationFrame(t);})();
+    function animateCursor(){
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+  rx += (mx - rx) * .1;
+  ry += (my - ry) * .1;
+  curR.style.left = rx + 'px';
+  curR.style.top = ry + 'px';
+  requestAnimationFrame(animateCursor);
+}
+document.addEventListener('DOMContentLoaded', animateCursor);
     document.querySelectorAll('a,button').forEach(el=>{
       el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.2)';cur.style.background='#E8B84B';curR.style.opacity='0';});
       el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='#C9962A';curR.style.opacity='1';});
