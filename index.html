@@ -70,11 +70,10 @@
       border-bottom: 1px solid rgba(201,150,42,.1);
     }
     .nav-logo img {
-      height: 50px; width: auto; display: block;
-      /* Makes black-background logos show on dark nav */
-      mix-blend-mode: screen;
-      filter: brightness(1.5);
-    }
+  height: 80px; width: auto; display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.5) drop-shadow(0 0 12px rgba(201,150,42,.8)) drop-shadow(0 0 24px rgba(201,150,42,.4));
+}
     .nav-links { display:flex; gap:32px; list-style:none; }
     .nav-links a {
       font-family:'Another Danger', 'Oswald', sans-serif; font-size:14px; letter-spacing:.12em;
@@ -368,7 +367,7 @@
     }
     .foot-tagline { font-family:'Raleway',sans-serif; font-size:11px; font-style:italic; color:rgba(245,242,236,.28); }
     .foot-tagline strong { font-family:'Bebas Neue',sans-serif; font-size:13px; color:#C9962A; font-weight:400; font-style:normal; letter-spacing:.06em; display:block; }
-    .foot-logo img { height:48px; width:auto; display:block; margin:0 auto; mix-blend-mode:screen; filter:brightness(1.4); }
+    .foot-logo img { height:80px; width:auto; display:block; margin:0 auto; mix-blend-mode:screen; filter:brightness(1.4) drop-shadow(0 0 12px rgba(201,150,42,.8)) drop-shadow(0 0 24px rgba(201,150,42,.4)); }
     .foot-right { display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
     .foot-email { display:flex; border:1px solid rgba(201,150,42,.28); }
     .foot-email input { background:rgba(245,242,236,.04); border:none; padding:10px 16px; font-family:'Raleway',sans-serif; font-size:11px; color:#F5F2EC; outline:none; width:190px; }
