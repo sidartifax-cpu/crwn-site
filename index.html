@@ -11,12 +11,13 @@
     GITHUB: Push folder, go to Settings - Pages - Deploy from main
   -->
   <title>CRWN — Poet. Performer. Storyteller. Curator.</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-<link rel="manifest" href="assets/images/site.webmanifest">
 
-  <!-- Meta for social sharing — CHANGE THESE -->
+  <!-- FAVICON — 3 lines, no manifest (manifest causes spinner) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+
+  <!-- Meta for social sharing -->
   <meta name="description" content="CRWN — Poet. Performer. Storyteller. Curator. Atlanta, GA.">
   <meta property="og:title" content="CRWN — There Is No O">
   <meta property="og:description" content="Poetry is how I breathe. Performance is how I live.">
@@ -122,7 +123,6 @@
       background:linear-gradient(to left,rgba(25,6,50,.75) 0%,rgba(40,10,75,.4) 60%,transparent 100%);
     }
 
-    /* FIX 1: hero-inner now 2 cols — left content + right cards pushed to edge */
     .hero-inner {
       position:relative; z-index:10; width:100%; min-height:100dvh;
       display:grid; grid-template-columns:1fr 280px;
@@ -182,18 +182,13 @@
     .btn-purple .btn-label { color:#F5F2EC; }
     .btn-dark .btn-bg { background-image:url('assets/images/btn-black.png'); }
     .btn-dark .btn-label { color:#F5F2EC; border:1px solid rgba(245,242,236,.25); padding:11px 25px; }
-    /* Black solo button — no border overlay */
     .btn-black-solo .btn-bg { background-image:url('assets/images/btn-black.png'); }
     .btn-black-solo .btn-label { color:#F5F2EC; }
 
-    /* FIX 2: cards pinned to far right edge */
     .hero-right {
       display:flex; flex-direction:column; align-items:flex-end; gap:18px;
-      align-self:center;
-      padding-right:0;
-      position:absolute;
-      right:0;
-      top:50%;
+      align-self:center; padding-right:0;
+      position:absolute; right:0; top:50%;
       transform:translateY(-50%);
       opacity:0;
       animation:fadeLeft .8s 1s cubic-bezier(0.32,0.72,0,1) forwards;
@@ -240,8 +235,7 @@
       padding:14px 28px;
       background-image:url('assets/images/btn-black.png');
       background-size:100% 100%; background-repeat:no-repeat; background-color:transparent;
-      border:none; white-space:nowrap;
-      min-width:180px;
+      border:none; white-space:nowrap; min-width:180px;
       transition:filter .3s, gap .3s;
     }
     .feat-cta:hover { filter:brightness(1.25); gap:14px; }
@@ -284,11 +278,7 @@
       color:rgba(245,242,236,.55); margin-bottom:28px;
     }
     .album-cover-wrap { position:relative; overflow:hidden; }
-    .album-cover-wrap img {
-      width:100%; display:block;
-      transition:transform .6s, filter .4s;
-      filter:brightness(.88);
-    }
+    .album-cover-wrap img { width:100%; display:block; transition:transform .6s, filter .4s; filter:brightness(.88); }
     .album-cover-wrap:hover img { transform:scale(1.03); filter:brightness(.95); }
     .album-cover-label {
       position:absolute; bottom:0; left:0; right:0; padding:24px;
@@ -312,10 +302,7 @@
     .g-all { font-family:'Oswald',sans-serif; font-size:9px; letter-spacing:.2em; color:#0A0A0A; font-weight:600; text-transform:uppercase; text-decoration:none; background-image:url('assets/images/btn-gold.png'); background-size:100% 100%; background-repeat:no-repeat; background-color:transparent; border:none; padding:10px 22px; min-width:160px; text-align:center; display:inline-block; transition:filter .3s, transform .2s; }
     .g-all:hover { filter:brightness(1.1); transform:scale(1.03); }
     .shows-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
-    .show-featured {
-      background:#3B0A5C; padding:30px 32px;
-      display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
-    }
+    .show-featured { background:#3B0A5C; padding:30px 32px; display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden; }
     .show-featured::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 60%); }
     .sf-date { display:flex; align-items:flex-start; gap:14px; }
     .sf-cal { background:rgba(245,242,236,.1); border:1px solid rgba(245,242,236,.12); padding:8px 12px; text-align:center; min-width:58px; }
@@ -357,7 +344,6 @@
 
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
     @keyframes fadeIn { from{opacity:0}to{opacity:1} }
-    @keyframes heroRise { to { opacity:1; transform:translateY(0); } }
     @keyframes scrollPulse { 0%,100%{opacity:.3}50%{opacity:1} }
     .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s,transform .7s; }
     .reveal.on { opacity:1; transform:translateY(0); }
@@ -388,11 +374,11 @@
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
     <a href="https://www.tiktok.com/@taj.crwn" target="_blank" title="TikTok">
-  <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
-</a>
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+    </a>
     <a href="https://linktr.ee/KidCRWN" target="_blank" title="Linktree">
-  <svg viewBox="0 0 24 24"><path d="M7.953 15.066c-.08.163-.08.324-.08.486.08.517.528.897 1.052.897h.08l3.773-.573v4.26l.08.081c.09.498.534.863 1.05.863s.963-.365 1.052-.863l.08-.081v-4.26l3.773.573h.08c.528 0 .976-.384 1.053-.9 0-.16 0-.324-.08-.485l-2.475-4.339 2.475-4.339c.08-.161.08-.323.08-.484-.077-.517-.525-.9-1.052-.9h-.08l-3.773.572V1.137l-.08-.081C14.913.558 14.469.193 13.953.193s-.963.365-1.052.863l-.08.081v4.26l-3.773-.573h-.08c-.527 0-.975.384-1.052.9 0 .161 0 .323.08.484l2.475 4.34-2.518 4.578z"/></svg>
-</a>
+      <svg viewBox="0 0 24 24"><path d="M7.953 15.066c-.08.163-.08.324-.08.486.08.517.528.897 1.052.897h.08l3.773-.573v4.26l.08.081c.09.498.534.863 1.05.863s.963-.365 1.052-.863l.08-.081v-4.26l3.773.573h.08c.528 0 .976-.384 1.053-.9 0-.16 0-.324-.08-.485l-2.475-4.339 2.475-4.339c.08-.161.08-.323.08-.484-.077-.517-.525-.9-1.052-.9h-.08l-3.773.572V1.137l-.08-.081C14.913.558 14.469.193 13.953.193s-.963.365-1.052.863l-.08.081v4.26l-3.773-.573h-.08c-.527 0-.975.384-1.052.9 0 .161 0 .323.08.484l2.475 4.34-2.518 4.578z"/></svg>
+    </a>
   </div>
 
   <nav id="nav">
@@ -416,15 +402,12 @@
     <div class="hero-overlay"></div>
     <div class="curtain-l"></div>
     <div class="curtain-r"></div>
-
     <div class="hero-inner">
       <div class="hero-left">
         <div class="hero-big-name">CRWN</div>
         <div class="hero-no-o">There Is No "O"</div>
         <div class="hero-sub-tagline">'Cause I Don't Owe You Shit.</div>
-        <div class="hero-descriptor">
-          Poet<span>•</span>Performer<span>•</span>Storyteller<span>•</span>Curator
-        </div>
+        <div class="hero-descriptor">Poet<span>•</span>Performer<span>•</span>Storyteller<span>•</span>Curator</div>
         <div class="hero-btns">
           <button class="btn-brush btn-gold" data-player-open>
             <div class="btn-bg"></div>
@@ -440,7 +423,6 @@
           </a>
         </div>
       </div>
-
       <div class="hero-right">
         <div class="hero-note">
           <p>"Poetry is how I breathe. Performance is how I live."</p>
@@ -452,7 +434,6 @@
         </div>
       </div>
     </div>
-
     <div class="scroll-cue">
       <span>Scroll To Enter</span>
       <div class="scroll-line"></div>
@@ -485,10 +466,7 @@
     <div class="sound-left">
       <div class="s-eyebrow">♛ The Sound</div>
       <div class="s-title reveal">Elevationships<br>The Album</div>
-      <div class="s-desc reveal">
-        10 tracks. Every word earned. Every beat built from the ground up.
-        Stream a 45-second preview of any track — then own it.
-      </div>
+      <div class="s-desc reveal">10 tracks. Every word earned. Every beat built from the ground up. Stream a 45-second preview of any track — then own it.</div>
       <div class="track-count-badge reveal">
         <span class="tc-num">10</span>
         <span>Tracks · 45-Sec Previews · Purchase Inside</span>
@@ -525,30 +503,21 @@
           </div>
           <div class="sf-info">
             <div class="sf-name">Velvet Voices Poetry Experience</div>
-            <div class="sf-venue">
-              Earby Studios — Atlanta, GA
-              <strong>555 Whitehall St SW · 7PM</strong>
-            </div>
+            <div class="sf-venue">Earby Studios — Atlanta, GA<strong>555 Whitehall St SW · 7PM</strong></div>
           </div>
         </div>
         <a href="https://earbystudios.com" class="sf-tix" target="_blank">Get Tickets →</a>
       </div>
       <div class="shows-right">
         <div class="show-mini reveal">
-          <div>
-            <div class="sm-mo">Jun</div>
-            <div class="sm-day">11</div>
-          </div>
+          <div><div class="sm-mo">Jun</div><div class="sm-day">11</div></div>
           <div>
             <div class="sm-name">Poetry vs Hip-Hop</div>
             <div class="sm-venue">City Winery Atlanta<strong>10 Year Anniversary</strong></div>
           </div>
         </div>
         <div class="show-mini reveal" style="transition-delay:.08s">
-          <div>
-            <div class="sm-mo">Jun</div>
-            <div class="sm-day">25</div>
-          </div>
+          <div><div class="sm-mo">Jun</div><div class="sm-day">25</div></div>
           <div>
             <div class="sm-name">Elevationships Album Release</div>
             <div class="sm-venue">The Basement East — Nashville<strong>Album Release Show</strong></div>
@@ -585,34 +554,34 @@
   <script src="js/player.js"></script>
 
   <script>
-  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-  let mx=0,my=0,rx=0,ry=0,moving=false;
+    const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+    let mx=0,my=0,rx=0,ry=0,moving=false;
 
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    if(!moving){moving=true;animate();}
-  });
+    document.addEventListener('mousemove',e=>{
+      mx=e.clientX;my=e.clientY;
+      if(!moving){moving=true;animate();}
+    });
 
-  function animate(){
-    cur.style.left=mx+'px';cur.style.top=my+'px';
-    rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
-    curR.style.left=rx+'px';curR.style.top=ry+'px';
-    if(Math.abs(mx-rx)>.1||Math.abs(my-ry)>.1){
-      requestAnimationFrame(animate);
-    } else { moving=false; }
-  }
+    function animate(){
+      cur.style.left=mx+'px';cur.style.top=my+'px';
+      rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+      curR.style.left=rx+'px';curR.style.top=ry+'px';
+      if(Math.abs(mx-rx)>.1||Math.abs(my-ry)>.1){
+        requestAnimationFrame(animate);
+      } else { moving=false; }
+    }
 
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.2)';cur.style.background='#E8B84B';curR.style.opacity='0';});
-    el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='#C9962A';curR.style.opacity='1';});
-  });
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.2)';cur.style.background='#E8B84B';curR.style.opacity='0';});
+      el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.background='#C9962A';curR.style.opacity='1';});
+    });
 
-  const nav=document.getElementById('nav');
-  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50),{passive:true});
 
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 
 </body>
 </html>
